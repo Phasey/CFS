@@ -7,26 +7,29 @@ public class PlayerController : MonoBehaviour {
 	
 
 	public List<GameObject> g = new List<GameObject> ();
+
 	public float movementSpeed = 60;
 	public float maxSpeed = 5;
 
 	public Vector3 dashDirection;
+	public float timeBetweenDashs = 0.5f;
+	private float dashTimer;
 	public float dashTime = 1f;
 	public float dashSpeed = 1f;
 	public float dashStopSpeed = 0.1f;
 
 	public float dashForce = 10;
-	public bool canDash = false;
-
+	public bool canDash = true;
 
 	public Rigidbody rigidBody;
 	public XboxController controller;
 
 	//Shooting
-	public Transform bulletSpawPosition1;
-	public GameObject bulletPrefab1;
+	public Transform bulletSpawPosition;
+	public GameObject bulletPrefab;
 	private float shootingTimer;
 	public float timeBetweenShots = 0.02f;
+
 
 
 	public Vector3 previousRotationDirextion = Vector3.forward;       
@@ -42,7 +45,7 @@ public class PlayerController : MonoBehaviour {
 	}
 	void Update(){
 		RotatePlayer ();
-		//FireGun ();
+		FireGun ();
 		//DashPlayer();
 	}
 
@@ -66,15 +69,6 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate () {
 		MovePlayer ();
 	}
-//	private void FireGun(){
-//		if (XCI.GetAxis(XboxAxis.RightTrigger) > 0.15f){
-//			if (Time.time - shootingTimer > timeBetweenShots) {
-//				GameObject GO = Instantiate (bulletPrefab1, bulletSpawPosition1.position, Quaternion.identity) as GameObject;
-//				GO.GetComponent<Rigidbody> ().AddForce(transform.forward * 20, ForceMode.Impulse);
-//				Destroy(GO, 3);
-//				shootingTimer = Time.time;
-//			}
-//		}
 
 	private void MovePlayer(){
 
@@ -87,11 +81,44 @@ public class PlayerController : MonoBehaviour {
 			rigidBody.velocity = rigidBody.velocity.normalized * maxSpeed;	
 		}
 		if(XCI.GetAxis(XboxAxis.LeftTrigger) >0.01f){
-			canDash =true;
-			dashSpeed = 10;
-		}else{
-			canDash = false;
-			dashSpeed= 1;
+
+			if (canDash) {
+				//Set Dash Timer to Time.time
+				//dashTimer = Time.time;
+
+				canDash = false;
+				dashSpeed = 10;
+				Invoke ("StopDash", dashTime);
+				Invoke ("ResetDash", dashTime + timeBetweenDashs);
+			}
+		}
+
+//		if (Time.time - dashTimer < timeBetweenDashs) {
+//			
+//		} else {
+//			canDash = false;
+//			dashSpeed = 1;
+//		}
+		
+	}
+	private void StopDash(){
+		dashSpeed = 1;
+	}
+
+	private void ResetDash(){
+		canDash = true;
+	
+	}
+
+
+	private void FireGun(){
+		if (XCI.GetAxis(XboxAxis.RightTrigger) > 0.15f){
+			if (Time.time - shootingTimer > timeBetweenShots) {
+				GameObject GO = Instantiate (bulletPrefab, bulletSpawPosition.position, Quaternion.identity) as GameObject;
+				GO.GetComponent<Rigidbody> ().AddForce(transform.forward * 20, ForceMode.Impulse);
+				Destroy(GO, 3);
+				shootingTimer = Time.time;
+			}
 		}
 	}
 
@@ -117,4 +144,4 @@ public class PlayerController : MonoBehaviour {
 //		}//else{
 //		//	dashDirection = Vector3.zero;	
 //		//}
-	}
+}

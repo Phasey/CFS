@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour {
 	public GameObject player;
 	public NavMeshAgent navAgent;
 
-	public float health = 6;
+	public float health = 100;
 
 	public void TakeDamage(float damage){
 
@@ -30,31 +30,4 @@ public class Enemy : MonoBehaviour {
 			navAgent.destination = player.transform.position;
 		}
 	}
-
-
-
-
-
-//	public Transform startNode;
-//	public Transform endNode;
-//	private	NavMeshAgent NMA;
-//
-//
-//	void Start(){
-//
-//		NMA = GetComponent<NavMeshAgent> ();
-//		NMA.destination = startNode.position;
-//	}
-//
-//	void Update (){
-//		if (Vector3.Distance (transform.position, startNode.position) < 2){
-//			NMA.destination = endNode.position;
-//
-//		}
-//		if (Vector3.Distance (transform.position, endNode.position) < 2){
-//			NMA.destination = startNode.position;
-//
-//		}
-//	}
-//
 }
