@@ -30,6 +30,10 @@ public class PlayerController : MonoBehaviour {
 	private float shootingTimer;
 	public float timeBetweenShots = 0.02f;
 
+	public Transform grenadeSpawnPosition;
+	public GameObject grenadePrefab;
+	public float grenadeTimer;
+	public float timeBetweenGrenades = 0.02f;
 
 
 	public Vector3 previousRotationDirextion = Vector3.forward;       
@@ -40,6 +44,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Start () {
 		rigidBody = GetComponent<Rigidbody> ();
+		rigidBody = GetComponent<Rigidbody> ();
 
 		//currentDashTime = dashTime;
 	}
@@ -47,6 +52,7 @@ public class PlayerController : MonoBehaviour {
 		RotatePlayer ();
 		FireGun ();
 		//DashPlayer();
+		ThrowGrenade();
 	}
 
 	private void RotatePlayer(){
@@ -122,6 +128,17 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	private void ThrowGrenade(){
+		if (XCI.GetButtonDown(XboxButton.RightBumper)){
+			if (Time.time - grenadeTimer > timeBetweenGrenades) {
+				GameObject GO = Instantiate (grenadePrefab, grenadeSpawnPosition.position, Quaternion.identity) as GameObject;
+				GO.GetComponent<Rigidbody> ().AddForce(transform.forward * 80, ForceMode.Impulse);
+				Destroy (GO, 3);
+				grenadeTimer = Time.time;
+
+			}
+		}
+	}
 
 
 
