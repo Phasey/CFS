@@ -70,15 +70,15 @@
      <Compile Include="Assets\3rd Party\XInput\XInputDotNet\Examples\XInputTestCS.cs" />
      <Compile Include="Assets\3rd Party\XInput\XboxCtrlrInputExample\MoveLaser.cs" />
      <Compile Include="Assets\3rd Party\XInput\XboxCtrlrInputExample\MovePlayer.cs" />
-     <Compile Include="Assets\Scripts\Bullet.cs" />
-     <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\DoorTrigger.cs" />
-     <Compile Include="Assets\Scripts\Enemy.cs" />
+     <Compile Include="Assets\Scripts\EnemyMovement.cs" />
      <Compile Include="Assets\Scripts\EnemySpawing.cs" />
-     <Compile Include="Assets\Scripts\PlayerBullets.cs" />
-     <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\ScriptsInUse\Bullet.cs" />
+     <Compile Include="Assets\Scripts\ScriptsInUse\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\ScriptsInUse\Enemy.cs" />
+     <Compile Include="Assets\Scripts\ScriptsInUse\PlayerBullets.cs" />
+     <Compile Include="Assets\Scripts\ScriptsInUse\PlayerController.cs" />
      <Compile Include="Assets\Scripts\TEST.cs" />
-     <Compile Include="Assets\Scripts\TestingScripts\EnemyAttack.cs" />
      <Compile Include="Assets\Scripts\TestingScripts\EnemyManager.cs" />
      <Compile Include="Assets\Scripts\TestingScripts\PlayerHealth.cs" />
      <Compile Include="Assets\Scripts\XBOXController.cs" />
@@ -126,28 +126,22 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
  <Reference Include="ProBuilderCore-Unity5">
- <HintPath>C:/Users/s171019/Desktop/CFS (SVN)/CFS/CFS.git/trunk/Assets/3rd Party/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
+ <HintPath>C:/Users/Jim/Desktop/CFS/CFS.git/trunk/Assets/3rd Party/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
  </Reference>
  <Reference Include="ProBuilderMeshOps-Unity5">
- <HintPath>C:/Users/s171019/Desktop/CFS (SVN)/CFS/CFS.git/trunk/Assets/3rd Party/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
+ <HintPath>C:/Users/Jim/Desktop/CFS/CFS.git/trunk/Assets/3rd Party/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
  </Reference>
  <Reference Include="KDTree">
- <HintPath>C:/Users/s171019/Desktop/CFS (SVN)/CFS/CFS.git/trunk/Assets/3rd Party/ProCore/ProBuilder/Classes/ClassesLib/KDTree.dll</HintPath>
+ <HintPath>C:/Users/Jim/Desktop/CFS/CFS.git/trunk/Assets/3rd Party/ProCore/ProBuilder/Classes/ClassesLib/KDTree.dll</HintPath>
  </Reference>
  <Reference Include="pb_Stl">
- <HintPath>C:/Users/s171019/Desktop/CFS (SVN)/CFS/CFS.git/trunk/Assets/3rd Party/ProCore/ProBuilder/Classes/ClassesLib/pb_Stl.dll</HintPath>
+ <HintPath>C:/Users/Jim/Desktop/CFS/CFS.git/trunk/Assets/3rd Party/ProCore/ProBuilder/Classes/ClassesLib/pb_Stl.dll</HintPath>
  </Reference>
  <Reference Include="Triangle">
- <HintPath>C:/Users/s171019/Desktop/CFS (SVN)/CFS/CFS.git/trunk/Assets/3rd Party/ProCore/ProBuilder/Classes/ClassesLib/Triangle.dll</HintPath>
+ <HintPath>C:/Users/Jim/Desktop/CFS/CFS.git/trunk/Assets/3rd Party/ProCore/ProBuilder/Classes/ClassesLib/Triangle.dll</HintPath>
  </Reference>
  <Reference Include="XInputDotNetPure">
- <HintPath>C:/Users/s171019/Desktop/CFS (SVN)/CFS/CFS.git/trunk/Assets/3rd Party/XInput/Plugins/x86_64/XInputDotNetPure.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.iOS.Extensions.Xcode">
- <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.iOS.Extensions.Common">
- <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll</HintPath>
+ <HintPath>C:/Users/Jim/Desktop/CFS/CFS.git/trunk/Assets/3rd Party/XInput/Plugins/x86_64/XInputDotNetPure.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
