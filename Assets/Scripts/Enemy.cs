@@ -20,8 +20,11 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
+
 	void start(){
+		
 		player = GameObject.FindGameObjectWithTag ("Player");
+
 		navAgent = GetComponent<NavMeshAgent> ();
 	}
 
