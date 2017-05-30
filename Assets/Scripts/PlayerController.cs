@@ -3,42 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using XboxCtrlrInput;
 
-public class PlayerController : MonoBehaviour {
-	
+public class PlayerController : MonoBehaviour {	
 
-	public List<GameObject> g = new List<GameObject> ();
-	//
+
+	//How fast the player can move and the speed it can move at 1 time.
 	public float movementSpeed = 60;
 	public float maxSpeed = 5;
-	//
+
+	//This gives the position/Direction of where the dash will go. - The time it takes to dash and the speed of which it does so.
 	public Vector3 dashDirection;
 	public float timeBetweenDashs = 0.5f;
 	private float dashTimer;
 	public float dashTime = 1f;
 	public float dashSpeed = 1f;
 	public float dashStopSpeed = 0.1f;
-	//
 	public float dashForce = 10;
 	public bool canDash = true;
-	//
+
+	//Finds the Rigidbody and XboxController within the whole program naming it as rigidBody and controller within this script.
 	public Rigidbody rigidBody;
 	public XboxController controller;
-	//
-	//Shooting
+
+	//Shooting/where the obj spawns/the obj itself/ a timer for the 
 	public Transform bulletSpawPosition;
 	public GameObject bulletPrefab;
 	private float shootingTimer;
 	public float timeBetweenShots = 0.02f;
-	//
+	//Grenades
 	public Transform grenadeSpawnPosition;
 	public GameObject grenadePrefab;
 	public float grenadeTimer;
 	public float timeBetweenGrenades = 0.02f;
 
-	//
+	//keeps the directioin in which the player was facing and stores it as forward.
 	public Vector3 previousRotationDirextion = Vector3.forward;       
 
-	//private float currentDashTime;
 
 	//--------------------------------------------------------------------------------------
 	//	Start()
@@ -55,20 +54,27 @@ public class PlayerController : MonoBehaviour {
 
 	//--------------------------------------------------------------------------------------
 	//	Update()
-	// 			Runs every frame
+	// 			Runs every frame, Calls RotatePlayer FireGun and ThrowGrenade
+
 	// Param:
 	//		None
 	// Return:
 	//		Void
-	//--------------------------------------------------------------------------------------
+	//---------------------------------------------------------------------------- ----------
 	void Update(){
 		RotatePlayer ();
 		FireGun ();
-		//DashPlayer();
 		ThrowGrenade();
 	}
 
-	//
+	//--------------------------------------------------------------------------------------
+	//	RotatePlayer()
+	// 			checks to see if the right thumbstick is not being used, if not keeps shooting in the same direction.
+	// Param:
+	//		None
+	// Return:
+	//		Void
+	//--------------------------------------------------------------------------------------	
 	private void RotatePlayer(){
 		float rotateAxisX = XCI.GetAxis (XboxAxis.RightStickX, controller);
 		float rotateAxisZ = XCI.GetAxis (XboxAxis.RightStickY, controller);
@@ -97,7 +103,15 @@ public class PlayerController : MonoBehaviour {
 		MovePlayer ();
 	}
 
-	//
+	//--------------------------------------------------------------------------------------
+	//	MovePlayer()
+	// 			Gives the controlls to the player.
+	//			Allows the player to gain speed(dash) if LT is pressed. once complete in returns to normal speed.
+	// Param:
+	//		None
+	// Return:
+	//		Void
+	//--------------------------------------------------------------------------------------
 	private void MovePlayer(){
 
 		float axisX = XCI.GetAxis (XboxAxis.LeftStickX, controller);
@@ -111,38 +125,47 @@ public class PlayerController : MonoBehaviour {
 		if(XCI.GetAxis(XboxAxis.LeftTrigger) >0.01f){
 
 			if (canDash) {
-				//Set Dash Timer to Time.time
-				//dashTimer = Time.time;
-
 				canDash = false;
 				dashSpeed = 10;
 				Invoke ("StopDash", dashTime);
 				Invoke ("ResetDash", dashTime + timeBetweenDashs);
 			}
 		}
-
-//		if (Time.time - dashTimer < timeBetweenDashs) {
-//			
-//		} else {
-//			canDash = false;
-//			dashSpeed = 1;
-//		}
-		
 	}
 
-
-	//
+	//--------------------------------------------------------------------------------------
+	//	StopDash()
+	// 			reverts the player to normal speed 
+	// Param:
+	//		None
+	// Return:
+	//		Void
+	//--------------------------------------------------------------------------------------	
 	private void StopDash(){
 		dashSpeed = 1;
 	}
 
 
-	//
+//--------------------------------------------------------------------------------------
+	//	ResetDash()
+	// 			Allows the player to use dash
+	// Param:
+	//		None
+	// Return:
+	//		Void
+//--------------------------------------------------------------------------------------	
 	private void ResetDash(){
 		canDash = true;	
 	}
 
-	//
+//--------------------------------------------------------------------------------------
+	//	FireGun()
+	// 			When pressed if the timer allows it (timer is > than between shots) than it will shoot in said direction
+	// Param:
+	//		None
+	// Return:
+	//		Void
+//--------------------------------------------------------------------------------------	
 	private void FireGun(){
 		if (XCI.GetAxis(XboxAxis.RightTrigger) > 0.15f){
 			if (Time.time - shootingTimer > timeBetweenShots) {
@@ -155,7 +178,14 @@ public class PlayerController : MonoBehaviour {
 	}
 
 
-	//
+//--------------------------------------------------------------------------------------
+	//	ThrowGrenade()
+	// 			When pressed if the timer allows it (timer is > than between throws) than throw grenade in said direction			
+	// Param:
+	//		None
+	// Return:
+	//		Void
+//--------------------------------------------------------------------------------------
 	private void ThrowGrenade(){
 		if (XCI.GetButtonDown(XboxButton.RightBumper)){
 			if (Time.time - grenadeTimer > timeBetweenGrenades) {

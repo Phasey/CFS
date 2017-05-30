@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour {
 
 	//--------------------------------------------------------------------------------------
 	//	OnTriggerEnter()
-	// 			Trigger detection. this detects when a bullet passes through it.
+	// 			Trigger detection. this detects when a bullet passes through it. If goes through aything with the tag "Ënemy" takes damage.
 	// 
 	// Param:
 	//			Collider other - The collider of any objects that pass into this trigger.
