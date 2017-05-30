@@ -112,8 +112,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void ResetDash(){
-		canDash = true;
-	
+		canDash = true;	
 	}
 
 
@@ -135,7 +134,6 @@ public class PlayerController : MonoBehaviour {
 				GO.GetComponent<Rigidbody> ().AddForce(transform.forward * 80, ForceMode.Impulse);
 				Destroy (GO, 3);
 				grenadeTimer = Time.time;
-
 			}
 		}
 	}

@@ -9,7 +9,6 @@ public class DoorTrigger : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		if (other.tag == "Player") {
 			Debug.Log ("Yes");
-
 			doorToOpen.SetActive (false);
 			this.gameObject.SetActive (false);
 		}

@@ -7,11 +7,15 @@ public class Bullet : MonoBehaviour {
 	//Damage is how much the enemys loose on their health slowly killing them.
 	public float damage = 20;
 
-	//------------------------------------------------------------------------
-	//when something enters this trigger while the program is running
-	//and has the Tag of Enemy
-	//object is destroyed once hit.
-	//------------------------------------------------------------------------
+	//--------------------------------------------------------------------------------------
+	//	OnTriggerEnter()
+	// 			Trigger detection. this detects when a bullet passes through it.
+	// 
+	// Param:
+	//			Collider other - The collider of any objects that pass into this trigger.
+	// Return:
+	//		void
+	//--------------------------------------------------------------------------------------
 	void OnTriggerEnter(Collider other){
 		//whatIsThis =other.gameObject;
 		if (other.tag == "Enemy") {
