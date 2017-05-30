@@ -2,18 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EnemySpawing : MonoBehaviour {
 
 	public List<Transform> spawnPositionList = new List<Transform> ();
 	public List<GameObject> spawnRobotList = new List<GameObject> ();
 	public GameObject robotPrefab;
 
-
 	public float timeBetweenSpawns = 5f;
 	public float spawningTimer;
-
-
-	
 
 	void Update () {
 		SpawnEnemies ();

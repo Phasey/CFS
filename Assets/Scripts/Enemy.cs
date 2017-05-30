@@ -17,32 +17,6 @@ public class Enemy : MonoBehaviour {
 
 
 
-	private void Patrolling(){
-		navAgent.destination = patrolNodes [nodePointer].position;
-		if (Vector3.Distance (transform.position, patrolNodes [nodePointer].position) < 1f) {
-			nodePointer++;
-
-			if (nodePointer > patrolNodes.Count) {
-				nodePointer = 0;
-			}
-		}
-
-		if (Vector3.Distance (transform.position, player.transform.position) < detectionRange) {
-			currentState = enemyState.chasing;
-		}
-	}
-
-	private void Chasing(){
-		navAgent.destination = player.transform.position;
-
-	}
-	private void Shooting(){
-
-	}
-
-	private void Searching(){
-
-	}
 
 
 
@@ -60,26 +34,24 @@ public class Enemy : MonoBehaviour {
 	}
 
 
-	void start(){
-
+	void Start(){
 		player = GameObject.FindGameObjectWithTag ("Player");
-
 		navAgent = GetComponent<NavMeshAgent> ();
 	}
-
+//
 	void Update(){
-		//if (Vector3.Distance (transform.position, player.transform.position) < detectionRange) {
-		//	navAgent.destination = player.transform.position;
-		//}
-		if (currentState == enemyState.chasing) {
-			Chasing ();
-		} else if (currentState == enemyState.patrolling) {
-			Patrolling ();
-		} else if (currentState == enemyState.shooting) {
-			Shooting ();
-		} else if (currentState == enemyState.searching) {
-			Searching ();
+		if (Vector3.Distance (transform.position, player.transform.position) < detectionRange) {
+			navAgent.destination = player.transform.position;
 		}
+//		if (currentState == enemyState.chasing) {
+//			Chasing ();
+//		} else if (currentState == enemyState.patrolling) {
+//			Patrolling ();
+//		} else if (currentState == enemyState.shooting) {
+//			Shooting ();
+//		} else if (currentState == enemyState.searching) {
+//			Searching ();
+//		}
+//	}
 	}
-
 }
