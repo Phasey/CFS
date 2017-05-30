@@ -7,47 +7,60 @@ public class PlayerController : MonoBehaviour {
 	
 
 	public List<GameObject> g = new List<GameObject> ();
-
+	//
 	public float movementSpeed = 60;
 	public float maxSpeed = 5;
-
+	//
 	public Vector3 dashDirection;
 	public float timeBetweenDashs = 0.5f;
 	private float dashTimer;
 	public float dashTime = 1f;
 	public float dashSpeed = 1f;
 	public float dashStopSpeed = 0.1f;
-
+	//
 	public float dashForce = 10;
 	public bool canDash = true;
-
+	//
 	public Rigidbody rigidBody;
 	public XboxController controller;
-
+	//
 	//Shooting
 	public Transform bulletSpawPosition;
 	public GameObject bulletPrefab;
 	private float shootingTimer;
 	public float timeBetweenShots = 0.02f;
-
+	//
 	public Transform grenadeSpawnPosition;
 	public GameObject grenadePrefab;
 	public float grenadeTimer;
 	public float timeBetweenGrenades = 0.02f;
 
-
+	//
 	public Vector3 previousRotationDirextion = Vector3.forward;       
 
 	//private float currentDashTime;
 
-
-
+	//--------------------------------------------------------------------------------------
+	//	Start()
+	// 			Runs during initialisation
+	// Param:
+	//			None.
+	// Return:
+	//		Void
+	//--------------------------------------------------------------------------------------
 	void Start () {
 		rigidBody = GetComponent<Rigidbody> ();
 		rigidBody = GetComponent<Rigidbody> ();
-
-		//currentDashTime = dashTime;
 	}
+
+	//--------------------------------------------------------------------------------------
+	//	Update()
+	// 			Runs every frame
+	// Param:
+	//		None
+	// Return:
+	//		Void
+	//--------------------------------------------------------------------------------------
 	void Update(){
 		RotatePlayer ();
 		FireGun ();
@@ -55,6 +68,7 @@ public class PlayerController : MonoBehaviour {
 		ThrowGrenade();
 	}
 
+	//
 	private void RotatePlayer(){
 		float rotateAxisX = XCI.GetAxis (XboxAxis.RightStickX, controller);
 		float rotateAxisZ = XCI.GetAxis (XboxAxis.RightStickY, controller);
@@ -71,11 +85,19 @@ public class PlayerController : MonoBehaviour {
 		transform.rotation = Quaternion.LookRotation (directionVector);
 	}
 
-	// Update is used for physics
+	//--------------------------------------------------------------------------------------
+	//	FixedUpdate()
+	// 			Runs every frame for Physics
+	// Param:
+	//		None
+	// Return:
+	//		Void
+	//--------------------------------------------------------------------------------------
 	void FixedUpdate () {
 		MovePlayer ();
 	}
 
+	//
 	private void MovePlayer(){
 
 		float axisX = XCI.GetAxis (XboxAxis.LeftStickX, controller);
@@ -107,15 +129,20 @@ public class PlayerController : MonoBehaviour {
 //		}
 		
 	}
+
+
+	//
 	private void StopDash(){
 		dashSpeed = 1;
 	}
 
+
+	//
 	private void ResetDash(){
 		canDash = true;	
 	}
 
-
+	//
 	private void FireGun(){
 		if (XCI.GetAxis(XboxAxis.RightTrigger) > 0.15f){
 			if (Time.time - shootingTimer > timeBetweenShots) {
@@ -127,6 +154,8 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+
+	//
 	private void ThrowGrenade(){
 		if (XCI.GetButtonDown(XboxButton.RightBumper)){
 			if (Time.time - grenadeTimer > timeBetweenGrenades) {
@@ -137,26 +166,4 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 	}
-
-
-
-//	private void DashPlayer(){
-//
-//		float leftTrigger = XCI.GetAxis (XboxAxis.LeftTrigger, controller);
-//		if  (XboxAxis.LeftTrigger = true){
-//			GetComponent<Rigidbody> ().AddForce (transform.forward * dashForce, ForceMode.Impulse);
-//
-//		}
-
-//		float leftTrigger = XCI.GetAxis (XboxAxis.LeftTrigger, controller);
-//
-//		//if (XCI.GetAxis (XboxAxis.LeftTrigger) = ) {
-//			currentDashTime = 0.0f;
-//		//}
-//		if (currentDashTime < dashTime){
-//			dashDirection = new Vector3 (0, 0, dashSpeed);
-//			currentDashTime += dashStopSpeed;
-//		}//else{
-//		//	dashDirection = Vector3.zero;	
-//		//}
 }

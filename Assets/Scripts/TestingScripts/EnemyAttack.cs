@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour {
-
+	//
 	public float timeBetweenAttacks = 0.5f;
 	public int attackDamage = 20;
 
+	//
 	GameObject player;
+	//
+
 	PlayerHealth playerHealth;
+
+	//
 	bool playerInRange;
 	float timer;
 
@@ -21,19 +26,28 @@ public class EnemyAttack : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag ("Player");
 		playerHealth = player.GetComponent<PlayerHealth> ();
 	}
-	
+
+	//
 	void OnTriggerEnter (Collider other){
 		if (other.gameObject == player) {
 			playerInRange = true;
 		}		
 	}
 
+	//
 	void OnTriggerExit (Collider other){
 		if (other.gameObject == player){	
 			playerInRange = false;
 		}
 	}
-
+	//--------------------------------------------------------------------------------------
+	//	Update()
+	// 			Runs every frame
+	// Param:
+	//		None
+	// Return:
+	//		Void
+	//--------------------------------------------------------------------------------------
 	void Update(){
 		timer += Time.deltaTime;
 		if(timer >= timeBetweenAttacks && playerInRange){
@@ -45,6 +59,7 @@ public class EnemyAttack : MonoBehaviour {
 		}
 	}
 
+	//
 		void Attack(){
 		Debug.Log ("hi");
 			timer = 0f;

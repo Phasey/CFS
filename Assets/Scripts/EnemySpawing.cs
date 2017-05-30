@@ -5,17 +5,32 @@ using UnityEngine;
 
 public class EnemySpawing : MonoBehaviour {
 
+	//
 	public List<Transform> spawnPositionList = new List<Transform> ();
 	public List<GameObject> spawnRobotList = new List<GameObject> ();
+
+
+	//
 	public GameObject robotPrefab;
 
+	//
 	public float timeBetweenSpawns = 5f;
 	public float spawningTimer;
 
+
+	//--------------------------------------------------------------------------------------
+	//	Update()
+	// 			Runs every frame
+	// Param:
+	//		None
+	// Return:
+	//		Void
+	//--------------------------------------------------------------------------------------
 	void Update () {
 		SpawnEnemies ();
 	}
 
+	//
 	public void SpawnEnemies(){
 		Transform spawnPositionToUse = null;
 		GameObject robotToSpawn = null;
